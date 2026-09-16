@@ -6,6 +6,8 @@ import Image from "next/image";
 
 import { motion } from "framer-motion";
 
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import type { HTMLAttributes, MouseEvent, KeyboardEvent } from "react";
 
 import { cn } from "@/lib/utils";
@@ -537,7 +539,7 @@ export function CalendlyCarousel({
                       alt={item.alt || item.author}
                       src={item.defaultImage}
                       fill
-                      unoptimized
+                      sizes="(max-width: 768px) 200px, 300px"
                       draggable={false}
                       style={{ objectFit: "cover", objectPosition: "top" }}
                       className="size-full object-cover"
@@ -626,7 +628,7 @@ export function CalendlyCarousel({
                         alt={item.alt || item.author}
                         src={item.selectedImage}
                         fill
-                        unoptimized
+                        sizes="(max-width: 768px) 340px, 330px"
                         draggable={false}
                         style={{ objectFit: "cover", objectPosition: "top" }}
                         className="size-full object-cover"
@@ -638,6 +640,25 @@ export function CalendlyCarousel({
             </motion.div>
           );
         })}
+      </div>
+
+      <div className="flex items-center gap-6 mt-4">
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous"
+          className="flex size-11 items-center justify-center rounded-full border border-border bg-card text-foreground hover:border-gold hover:text-gold-ink transition-colors"
+        >
+          <ChevronLeft className="size-5" />
+        </button>
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next"
+          className="flex size-11 items-center justify-center rounded-full border border-border bg-card text-foreground hover:border-gold hover:text-gold-ink transition-colors"
+        >
+          <ChevronRight className="size-5" />
+        </button>
       </div>
 
       <div
