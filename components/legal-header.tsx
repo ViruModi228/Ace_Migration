@@ -7,7 +7,7 @@ export function LegalHeader() {
     <header className="border-b border-border">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/" aria-label="ACE Migration home">
-          <Logo />
+          <Logo className="h-11" />
         </Link>
         <Link
           href="/"

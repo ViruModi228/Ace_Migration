@@ -8,8 +8,12 @@ import { siteConfig } from "@/lib/site-config";
 
 export function Contact() {
   return (
-    <section id="contact" className="py-24 bg-muted/40">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative py-24 bg-muted/40 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 size-[40rem] rounded-full bg-gold/10 blur-[140px]"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,9 +35,11 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-3 rounded-2xl border border-border bg-card p-6 md:p-10"
+            className="lg:col-span-3 rounded-2xl bg-gradient-to-br from-gold/25 via-border to-border p-px shadow-xl shadow-black/20"
           >
-            <ContactForm />
+            <div className="rounded-2xl bg-card p-6 md:p-10 h-full">
+              <ContactForm />
+            </div>
           </motion.div>
 
           <motion.div

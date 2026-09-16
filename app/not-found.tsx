@@ -6,7 +6,7 @@ import { Logo } from "@/components/logo";
 export default function NotFound() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center gap-6 px-4 text-center bg-background text-white">
-      <Logo dark />
+      <Logo dark className="h-20" />
       <Compass className="size-12 text-gold-ink" aria-hidden="true" />
       <div>
         <h1 className="font-heading text-4xl font-semibold">404</h1>

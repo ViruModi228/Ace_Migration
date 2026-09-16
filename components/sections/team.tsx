@@ -33,11 +33,11 @@ export function Team() {
             Meet our team
           </span>
           <h2 className="mt-2 font-heading text-3xl md:text-4xl font-semibold text-foreground">
-            Registered migration agents you can trust
+            The team behind ACE Migration
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            * Placeholder team and photos — real agent profiles and MARA
-            numbers to be supplied by ACE Migration.
+            * Ravi&rsquo;s MARA number is a placeholder pending his real OMARA
+            registration details.
           </p>
         </motion.div>
 

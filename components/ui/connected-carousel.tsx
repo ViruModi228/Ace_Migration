@@ -15,7 +15,8 @@ export interface CarouselItem {
   stat: string;
   quote: string;
   author: string;
-  role: string;
+  /** Small secondary badge under the author name — omitted entirely when unset. */
+  role?: string;
   defaultImage: string;
   selectedImage: string;
   alt?: string;
@@ -538,7 +539,7 @@ export function CalendlyCarousel({
                       fill
                       unoptimized
                       draggable={false}
-                      style={{ objectFit: "cover" }}
+                      style={{ objectFit: "cover", objectPosition: "top" }}
                       className="size-full object-cover"
                     />
                   </div>
@@ -595,26 +596,27 @@ export function CalendlyCarousel({
                             </span>
                           </span>
 
-                          <div className="shrink-0 flex items-center justify-center md:justify-start px-3 h-[6px] -my-[1px] text-secondary relative z-10">
-                            <svg
-                              className="block shrink-0 fill-current overflow-visible"
-                              preserveAspectRatio="none"
-                              viewBox="0 -2 14 12"
-                              width="14"
-                              height="10"
-                            >
-                              <path d="M0 -2 V0 C0 0 5.09091 0.49688 5.09091 4 C5.09091 7.50312 0 8 0 8 V10 H14 V8 C14 8 8.90909 7.50312 8.90909 4 C8.90909 0.49688 14 0 14 0 V-2 Z" />
-                            </svg>
-                          </div>
+                          {item.role && (
+                            <>
+                              <div className="shrink-0 flex items-center justify-center md:justify-start px-3 h-[6px] -my-[1px] text-secondary relative z-10">
+                                <svg
+                                  className="block shrink-0 fill-current overflow-visible"
+                                  preserveAspectRatio="none"
+                                  viewBox="0 -2 14 12"
+                                  width="14"
+                                  height="10"
+                                >
+                                  <path d="M0 -2 V0 C0 0 5.09091 0.49688 5.09091 4 C5.09091 7.50312 0 8 0 8 V10 H14 V8 C14 8 8.90909 7.50312 8.90909 4 C8.90909 0.49688 14 0 14 0 V-2 Z" />
+                                </svg>
+                              </div>
 
-                          <span className="w-fit inline-flex items-center justify-center rounded-[4px] font-medium py-1 px-2.5 text-[10px] sm:text-xs bg-secondary text-muted-foreground max-w-full select-none">
-                            <span
-                              title={item.role}
-                              className="truncate"
-                            >
-                              {item.role}
-                            </span>
-                          </span>
+                              <span className="w-fit inline-flex items-center justify-center rounded-[4px] font-medium py-1 px-2.5 text-[10px] sm:text-xs bg-secondary text-muted-foreground max-w-full select-none">
+                                <span title={item.role} className="truncate">
+                                  {item.role}
+                                </span>
+                              </span>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -626,7 +628,7 @@ export function CalendlyCarousel({
                         fill
                         unoptimized
                         draggable={false}
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: "cover", objectPosition: "top" }}
                         className="size-full object-cover"
                       />
                     </div>

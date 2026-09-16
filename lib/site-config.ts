@@ -21,7 +21,8 @@ export type TeamMember = {
   slug: string;
   name: string;
   role: string;
-  maraNumber: string;
+  /** Registered migration agents only — omit for non-agent roles (e.g. education consultants). */
+  maraNumber?: string;
   bio: string;
   photo: string;
   email: string;
@@ -171,51 +172,26 @@ export const processSteps: ProcessStep[] = [
   },
 ];
 
-// PLACEHOLDER agents — swap in real photos, names and MARA numbers before launch.
+// Real team members and real photos (public/team/). maraNumber is still a
+// PLACEHOLDER for Ravi — swap in his real OMARA registration number once known.
 export const team: TeamMember[] = [
   {
-    slug: "agent-one",
-    name: "Amelia Clarke",
-    role: "Principal Migration Agent",
-    maraNumber: "MARN 1000001",
-    bio: "Amelia has spent over a decade guiding skilled workers and families through complex migration pathways.",
-    photo:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&h=800&auto=format&fit=facearea&facepad=2.8",
-    email: "amelia@acemigration.com.au",
-    linkedin: "https://linkedin.com/in/example",
+    slug: "ravi-shah",
+    name: "Ravi Shah",
+    role: "Migration Agent",
+    maraNumber: "MARN 1000001", // PLACEHOLDER — replace with Ravi's real OMARA number
+    bio: "A trusted migration agent with more than five years of experience guiding clients through every visa pathway.",
+    photo: "/team/ravi-shah.jpeg",
+    email: "ravi@acemigration.com.au",
   },
   {
-    slug: "agent-two",
-    name: "Daniel Nguyen",
-    role: "Senior Migration Agent",
-    maraNumber: "MARN 1000002",
-    bio: "Daniel specialises in employer sponsorship and skilled visa nominations across every industry.",
-    photo:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&h=800&auto=format&fit=facearea&facepad=2.8",
-    email: "daniel@acemigration.com.au",
-    linkedin: "https://linkedin.com/in/example",
-  },
-  {
-    slug: "agent-three",
-    name: "Priya Shah",
-    role: "Migration Agent — Student Visas",
-    maraNumber: "MARN 1000003",
-    bio: "Priya helps students find the right course and visa pathway, from first enquiry to graduation.",
-    photo:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&h=800&auto=format&fit=facearea&facepad=2.8",
-    email: "priya@acemigration.com.au",
-    linkedin: "https://linkedin.com/in/example",
-  },
-  {
-    slug: "agent-four",
-    name: "Marcus Webb",
-    role: "Migration Agent — Family & Partner Visas",
-    maraNumber: "MARN 1000004",
-    bio: "Marcus brings a calm, detail-driven approach to some of the most personal visa applications.",
-    photo:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&h=800&auto=format&fit=facearea&facepad=2.8",
-    email: "marcus@acemigration.com.au",
-    linkedin: "https://linkedin.com/in/example",
+    slug: "meenal-patel",
+    name: "Meenal Patel",
+    role: "Education Consultant",
+    // No maraNumber — education consultants aren't OMARA-registered migration agents.
+    bio: "An education consultant with more than five years of experience helping students find the right course and pathway.",
+    photo: "/team/meenal-patel.jpeg",
+    email: "meenal@acemigration.com.au",
   },
 ];
 
@@ -235,7 +211,7 @@ export const testimonials: Testimonial[] = [
     visaType: "Skilled Independent Visa (subclass 189)",
     rating: 5,
     quote:
-      "I tried to do my points test myself and got it wrong twice. Amelia sorted it out in one meeting and we lodged within a fortnight.",
+      "I tried to do my points test myself and got it wrong twice. Ravi sorted it out in one meeting and we lodged within a fortnight.",
     avatar:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&h=300&auto=format&fit=facearea&facepad=2.5",
   },
@@ -253,7 +229,7 @@ export const testimonials: Testimonial[] = [
     visaType: "Employer Sponsored Visa (subclass 482)",
     rating: 4,
     quote:
-      "As a small business, sponsorship felt daunting. Daniel walked our HR team through every step and got our chef approved fast.",
+      "As a small business, sponsorship felt daunting. The team at ACE walked our HR team through every step and got our chef approved fast.",
     avatar:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&h=300&auto=format&fit=facearea&facepad=2.5",
   },
