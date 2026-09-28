@@ -6,6 +6,7 @@ export type Service = {
   slug: string;
   title: string;
   blurb: string;
+  image: string;
   icon:
     | "graduation-cap"
     | "briefcase"
@@ -21,9 +22,10 @@ export type TeamMember = {
   slug: string;
   name: string;
   role: string;
-  /** Registered migration agents only — omit for non-agent roles (e.g. education consultants). */
-  maraNumber?: string;
-  bio: string;
+  /** Professional registration badges shown on their card (MARN, INZ, QEAC, etc). */
+  credentials?: string[];
+  /** Two-line punchline shown on their card, e.g. ["Line one.", "Line two."]. */
+  tagline: [string, string];
   photo: string;
   email: string;
   linkedin?: string;
@@ -34,7 +36,6 @@ export type Testimonial = {
   visaType: string;
   rating: 1 | 2 | 3 | 4 | 5;
   quote: string;
-  avatar: string;
 };
 
 export type Stat = {
@@ -52,33 +53,39 @@ export const siteConfig = {
   name: "ACE Migration",
   tagline: "Migration & Visa Solutions",
   description:
-    "ACE Migration is a Melbourne-based team of registered migration agents helping students, skilled workers, families and businesses navigate Australian visas with confidence.",
+    "ACE Migration is an Australia-based team of Registered Migration Agents and Qualified Education Consultants helping students, skilled professionals, families and businesses navigate Australian visas with confidence and expertise over 10+ years.",
   url: "https://www.acemigration.com.au", // PLACEHOLDER — production domain
-  // PLACEHOLDER business details — replace with ACE Migration's real details.
-  phone: "+61 3 9000 0000",
-  phoneDisplay: "(03) 9000 0000",
-  email: "info@acemigration.com.au",
-  address: "Level 5, 123 Collins Street, Melbourne VIC 3000, Australia",
+  phone: "+61494838979",
+  phoneDisplay: "0494 838 979",
+  email: "contact@acemigration.com.au",
+  address: "Level 14, Suite 1409, 530 Little Collins St, Melbourne VIC 3000",
   mapEmbedUrl:
-    "https://www.google.com/maps?q=123+Collins+Street+Melbourne+VIC+3000&output=embed",
-  hours: [
-    { days: "Monday – Friday", time: "9:00am – 5:30pm AEST" },
-    { days: "Saturday", time: "By appointment only" },
-    { days: "Sunday", time: "Closed" },
-  ],
+    "https://www.google.com/maps?q=Level+14+Suite+1409+530+Little+Collins+St+Melbourne+VIC+3000&output=embed",
+  hours: [{ days: "Monday – Friday", time: "9:00am – 5:00pm" }],
   instagramHandle: "@acme.migration",
   instagramUrl: "https://www.instagram.com/acme.migration/?hl=en",
-  maraNumber: "MARN 1234567", // PLACEHOLDER — ACE Migration's OMARA registration number
-  // PLACEHOLDER — replace with the real booking system URL (Calendly, Acuity, etc).
-  bookingUrl: "https://calendly.com/ace-migration/consultation",
+  maraNumber: "MARN 2117165", // Ravi Shah — registered migration agent
+  bookingUrl: "https://app.lodgehq.com.au/book/ace-migration",
+  companyLegalName: "ACE MEL Pty Ltd",
+  abn: "72 702 050 557",
+  omaraRegisterUrl:
+    "https://portal.mara.gov.au/search-the-register-of-migration-agents/register-of-migration-agent-details/?ContactID=24e25d2e-7614-eb11-9449-000d3ad152db",
+  consumerGuideUrl:
+    "https://www.mara.gov.au/get-help-visa-subsite/FIles/consumer_guide_english.pdf",
+  codeOfConductUrl:
+    "https://www.mara.gov.au/tools-for-agents-subsite/Files/code-of-conduct-march-2022.pdf",
 } as const;
 
+// Shown in the About section under the "Who We Are" heading.
+export const aboutParagraphs: string[] = [
+  "ACE Migration is an Australia-based team of Registered Migration Agents and Qualified Education Consultants helping students, skilled professionals, families and businesses navigate Australian visas with confidence and expertise over 10+ years.",
+  "Offshore? We're already there. Our trained India-based team gives offshore clients local support in their own time zone and language. They work directly with our Melbourne agents, so your file moves smoothly without delays.",
+];
+
 export const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "How it works", href: "#process" },
-  { label: "Our team", href: "#team" },
+  { label: "About Us", href: "#about" },
+  { label: "Agents", href: "#team" },
   { label: "Testimonials", href: "#testimonials" },
-  { label: "Instagram", href: "#instagram" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -96,6 +103,8 @@ export const services: Service[] = [
     title: "Student Visas",
     blurb:
       "End-to-end support for study visas, from course selection to enrolment and visa lodgement.",
+    image:
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
     icon: "graduation-cap",
   },
   {
@@ -103,6 +112,8 @@ export const services: Service[] = [
     title: "Skilled Migration",
     blurb:
       "Skills assessments, points tests and nomination strategy for General Skilled Migration visas.",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop",
     icon: "briefcase",
   },
   {
@@ -110,6 +121,8 @@ export const services: Service[] = [
     title: "Partner Visas",
     blurb:
       "Evidence-based applications for partner and de facto visas, handled with care and discretion.",
+    image:
+      "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=800&auto=format&fit=crop",
     icon: "heart-handshake",
   },
   {
@@ -117,6 +130,8 @@ export const services: Service[] = [
     title: "Employer Sponsorship",
     blurb:
       "Sponsorship, nomination and visa applications for employers and the people they sponsor.",
+    image:
+      "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&auto=format&fit=crop",
     icon: "building-2",
   },
   {
@@ -124,6 +139,8 @@ export const services: Service[] = [
     title: "Visitor Visas",
     blurb:
       "Tourist, business and family visitor visas prepared correctly the first time.",
+    image:
+      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=800&auto=format&fit=crop",
     icon: "plane",
   },
   {
@@ -131,6 +148,8 @@ export const services: Service[] = [
     title: "Citizenship",
     blurb:
       "Guidance through residency requirements, testing and the citizenship application process.",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
     icon: "award",
   },
   {
@@ -138,6 +157,8 @@ export const services: Service[] = [
     title: "Education Counselling",
     blurb:
       "Course and institution advice matched to your goals, budget and future visa pathway.",
+    image:
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=800&auto=format&fit=crop",
     icon: "book-open-check",
   },
   {
@@ -145,13 +166,15 @@ export const services: Service[] = [
     title: "Appeals & Reviews",
     blurb:
       "Merits review and ministerial intervention requests for refused or cancelled visas.",
+    image:
+      "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
     icon: "scale",
   },
 ];
 
 export const processSteps: ProcessStep[] = [
   {
-    title: "Free initial consultation",
+    title: "Initial consultation",
     description:
       "We learn about your goals and assess your options across every relevant visa pathway.",
   },
@@ -172,15 +195,17 @@ export const processSteps: ProcessStep[] = [
   },
 ];
 
-// Real team members and real photos (public/team/). maraNumber is still a
-// PLACEHOLDER for Ravi — swap in his real OMARA registration number once known.
+// Real team members and real photos (public/team/).
 export const team: TeamMember[] = [
   {
     slug: "ravi-shah",
     name: "Ravi Shah",
     role: "Migration Agent",
-    maraNumber: "MARN 1000001", // PLACEHOLDER — replace with Ravi's real OMARA number
-    bio: "A trusted migration agent with more than five years of experience guiding clients through every visa pathway.",
+    credentials: ["MARN 2117165", "INZ 202502071"],
+    tagline: [
+      "The agent you call when it matters most.",
+      "Strategy first. Success follows.",
+    ],
     photo: "/team/ravi-shah.jpeg",
     email: "ravi@acemigration.com.au",
   },
@@ -188,8 +213,11 @@ export const team: TeamMember[] = [
     slug: "meenal-patel",
     name: "Meenal Patel",
     role: "Education Consultant",
-    // No maraNumber — education consultants aren't OMARA-registered migration agents.
-    bio: "An education consultant with more than five years of experience helping students find the right course and pathway.",
+    credentials: ["QEAC T096"],
+    tagline: [
+      "You bring the ambition. I'll map the pathway.",
+      "Your study journey, expertly planned.",
+    ],
     photo: "/team/meenal-patel.jpeg",
     email: "meenal@acemigration.com.au",
   },
@@ -198,57 +226,73 @@ export const team: TeamMember[] = [
 // PLACEHOLDER testimonials — replace with real, consented client feedback.
 export const testimonials: Testimonial[] = [
   {
-    name: "Ling W.",
-    visaType: "Student Visa (subclass 500)",
+    name: "Sahildeep S.",
+    visaType: "Visa Application",
     rating: 5,
     quote:
-      "ACE Migration made the entire process feel simple. Every question was answered within a day and my visa was approved without a single hiccup.",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&h=300&auto=format&fit=facearea&facepad=2.5",
+      "I was extremely satisfied with the entire process. Ravi Shah handled my case with great care, attention to detail, and professionalism. His clear communication made the whole experience much easier.",
   },
   {
-    name: "Rohan P.",
-    visaType: "Skilled Independent Visa (subclass 189)",
+    name: "Harmanpreet S.",
+    visaType: "Parent Visa",
     rating: 5,
     quote:
-      "I tried to do my points test myself and got it wrong twice. Ravi sorted it out in one meeting and we lodged within a fortnight.",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&h=300&auto=format&fit=facearea&facepad=2.5",
+      "Ravi Shah handled my parents' visa application professionally from start to finish. He was knowledgeable, responsive, and always kept us updated throughout the process.",
   },
   {
-    name: "Carla & James M.",
-    visaType: "Partner Visa (subclass 820/801)",
+    name: "Jayasri U.",
+    visaType: "Temporary Graduate Visa (subclass 485)",
     rating: 5,
     quote:
-      "A sensitive process handled with real care. They knew exactly what evidence we needed and never made us feel like a number.",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&h=300&auto=format&fit=facearea&facepad=2.5",
+      "I am sincerely thankful to Ravi Shah for helping us through our 485 visa grant process. His guidance and support made the journey much smoother and gave us confidence throughout.",
   },
   {
-    name: "Def Foods Pty Ltd",
-    visaType: "Employer Sponsored Visa (subclass 482)",
-    rating: 4,
-    quote:
-      "As a small business, sponsorship felt daunting. The team at ACE walked our HR team through every step and got our chef approved fast.",
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&h=300&auto=format&fit=facearea&facepad=2.5",
-  },
-  {
-    name: "Aiko T.",
-    visaType: "Visitor Visa (subclass 600)",
+    name: "Pooja B.",
+    visaType: "Permanent Residency",
     rating: 5,
     quote:
-      "Quick, professional, and genuinely kind. I'll be back for my parents' visitor visas next year.",
-    avatar:
-      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=300&h=300&auto=format&fit=facearea&facepad=2.5",
+      "I am incredibly grateful to Ravi Shah for his outstanding support throughout my PR application. His guidance, attention to detail, and professionalism made a real difference to our journey.",
   },
   {
-    name: "Yusuf K.",
-    visaType: "Citizenship Application",
+    name: "Sukhpreet S.",
+    visaType: "Partner Visa",
     rating: 5,
     quote:
-      "Ten years after my first visa with ACE, they helped me become a citizen. Full circle, and still the same great service.",
-    avatar:
-      "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=300&h=300&auto=format&fit=facearea&facepad=2.5",
+      "I was extremely satisfied with the service throughout my partner's spouse visa process. Ravi Shah provided clear guidance, professional support, and made sure we understood every step.",
+  },
+  {
+    name: "Kamalpreet K.",
+    visaType: "Migration Consultation",
+    rating: 5,
+    quote:
+      "Ravi Shah provided outstanding support throughout my migration journey. He handled all my enquiries professionally and always guided me in the right direction. I truly appreciate his support.",
+  },
+  {
+    name: "Marion K.",
+    visaType: "Visa Application",
+    rating: 5,
+    quote:
+      "I had an amazing experience working with Ravi Shah. His professionalism, efficiency, and clear communication really stood out throughout my visa application process.",
+  },
+  {
+    name: "Umar S.",
+    visaType: "Visa Grant",
+    rating: 5,
+    quote:
+      "I recently received my visa grant and am incredibly grateful for Ravi Shah's support. He guided me through every step of my application and was there whenever I needed assistance.",
+  },
+  {
+    name: "Simrandeep K.",
+    visaType: "Permanent Residency",
+    rating: 5,
+    quote:
+      "I am thrilled to say that my visa was approved. Ravi Shah's knowledge, support, and hard work helped me through a very difficult stage of my migration journey. I am extremely grateful.",
+  },
+  {
+    name: "Meenal G.",
+    visaType: "Partner Visa – Subsequent Temporary Visa",
+    rating: 5,
+    quote:
+      "I was very happy to receive my partner's subsequent temporary visa in just 1.5 months. Ravi Shah thoroughly checked our file and ensured the application was lodged accurately. I really appreciate his efforts.",
   },
 ];

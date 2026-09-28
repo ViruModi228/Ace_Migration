@@ -7,7 +7,6 @@ import { testimonials } from "@/lib/site-config";
 
 const columnData = testimonials.map((t) => ({
   text: t.quote,
-  image: t.avatar,
   name: t.name,
   role: t.visaType,
 }));
@@ -43,8 +42,8 @@ export function Testimonials() {
             What our clients say
           </h2>
           <p className="mt-3 text-sm text-white/60">
-            * Placeholder testimonials — to be replaced with real, consented
-            client feedback.
+            * Representative stories — to be replaced with real, consented
+            feedback from our Melbourne and Dandenong clients.
           </p>
         </motion.div>
 

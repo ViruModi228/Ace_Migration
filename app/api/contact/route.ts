@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
   try {
     const resend = new Resend(apiKey);
     await resend.emails.send({
-      from: `${siteConfig.name} website <onboarding@resend.dev>`,
+      from: `${siteConfig.name} website <${siteConfig.email}>`,
       to: inboxEmail,
       replyTo: email,
       subject: `New enquiry: ${serviceTitle} — ${name}`,

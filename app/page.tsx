@@ -1,13 +1,13 @@
 import { Navbar } from "@/components/sections/navbar";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Hero } from "@/components/sections/hero";
-import { IntroBanner } from "@/components/intro-banner";
-import { TrustStrip } from "@/components/sections/trust-strip";
-import { Services } from "@/components/sections/services";
-import { Process } from "@/components/sections/process";
+import { About } from "@/components/sections/about";
 import { Team } from "@/components/sections/team";
 import { Testimonials } from "@/components/sections/testimonials";
-import { InstagramFeed } from "@/components/sections/instagram-feed";
+// Instagram feed is temporarily disabled — ACE Migration doesn't have an
+// Instagram account live yet. Keep the section and its data logic intact;
+// just don't render it until there's a real account to show.
+// import { InstagramFeed } from "@/components/sections/instagram-feed";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
 
@@ -17,14 +17,11 @@ export default function Home() {
       <ScrollProgress />
       <Navbar />
       <main>
-        <IntroBanner />
         <Hero />
-        <TrustStrip />
-        <Services />
-        <Process />
+        <About />
         <Team />
         <Testimonials />
-        <InstagramFeed />
+        {/* <InstagramFeed /> */}
         <Contact />
       </main>
       <Footer />

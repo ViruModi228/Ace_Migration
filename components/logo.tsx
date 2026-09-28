@@ -1,24 +1,47 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-// The only logo asset is public/logo.png (transparent bg, navy + gold ink;
-// cropped to its actual content bounding box — the original export had a
-// huge transparent margin, ~48% of the canvas height, which made the mark
-// render tiny at any h-* size since that scales the whole padded canvas).
-// Its navy is only ~1.2:1 against the site's near-black background —
-// nearly invisible at true color — so it's always rendered as a white
-// silhouette via CSS filter instead. `dark` is kept as a no-op prop for
-// call-site compatibility; if a proper reversed/white-ink asset is ever
-// supplied for a genuinely light background, branch the `src` on it here.
-export function Logo({ className }: { className?: string; dark?: boolean }) {
+// public/logo.png (and the icon-only public/logo-mark.png, cropped to just
+// the "A" for tight spots like the navbar) is split into two derived layers
+// — see the split script this was generated from:
+//   - logo-symbol.png / logo-mark-symbol.png: the navy "A" + "ACE" wordmark
+//     + tagline, rendered white via `brightness-0 invert` for contrast on
+//     the site's near-black background.
+//   - logo-arrow.png / logo-mark-arrow.png: just the swoosh + plane,
+//     recoloured to the site's --gold token (its original alpha was too
+//     faint to read as gold on dark — only looked golden blended over
+//     white), kept in its true colour on top, unfiltered.
+// `dark` is kept as a no-op prop for call-site compatibility.
+export function Logo({
+  className,
+  iconOnly,
+}: {
+  className?: string;
+  dark?: boolean;
+  iconOnly?: boolean;
+}) {
+  const width = iconOnly ? 1025 : 1071;
+  const height = iconOnly ? 1025 : 1109;
+
   return (
-    <Image
-      src="/logo.png"
-      alt="ACE Migration & Visa Solutions"
-      width={866}
-      height={1061}
-      priority
-      className={cn("h-16 w-auto brightness-0 invert", className)}
-    />
+    <span className={cn("relative inline-block h-16 w-auto", className)}>
+      <Image
+        src={iconOnly ? "/logo-mark-symbol.png" : "/logo-symbol.png"}
+        alt="ACE Migration & Visa Solutions"
+        width={width}
+        height={height}
+        priority
+        className="h-full w-auto brightness-0 invert"
+      />
+      <Image
+        src={iconOnly ? "/logo-mark-arrow.png" : "/logo-arrow.png"}
+        alt=""
+        aria-hidden="true"
+        width={width}
+        height={height}
+        priority
+        className="absolute inset-0 h-full w-auto"
+      />
+    </span>
   );
 }

@@ -7,15 +7,47 @@ import { navLinks, siteConfig } from "@/lib/site-config";
 export function Footer() {
   return (
     <FooterUi
-      logoSrc="/logo.png"
       logoAlt={`${siteConfig.name} home`}
       description={siteConfig.description}
-      copyright={`© ${new Date().getFullYear()} ${siteConfig.name}. All rights reserved.`}
+      copyright={`© ${new Date().getFullYear()} ${siteConfig.companyLegalName}. All rights reserved.`}
       note={
-        <>
-          {siteConfig.maraNumber} — Registered with the Office of the
-          Migration Agents Registration Authority (OMARA).
-        </>
+        <div className="space-y-1.5">
+          <p>
+            {siteConfig.maraNumber} — Registered with the Office of the
+            Migration Agents Registration Authority (OMARA).{" "}
+            <a
+              href={siteConfig.omaraRegisterUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-ink underline underline-offset-2"
+            >
+              View our OMARA registration
+            </a>
+            .
+          </p>
+          <p>
+            {siteConfig.companyLegalName} — ABN: {siteConfig.abn}
+          </p>
+          <p>
+            <a
+              href={siteConfig.consumerGuideUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-ink underline underline-offset-2"
+            >
+              OMARA Consumer Guide
+            </a>{" "}
+            ·{" "}
+            <a
+              href={siteConfig.codeOfConductUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-ink underline underline-offset-2"
+            >
+              Code of Conduct
+            </a>
+          </p>
+        </div>
       }
       legalLinks={[
         { label: "Privacy Policy", href: "/privacy" },

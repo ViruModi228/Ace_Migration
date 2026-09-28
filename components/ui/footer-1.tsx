@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { FC, ReactNode } from "react";
+import { Logo } from "@/components/logo";
 
 interface FooterLink {
   label: string;
@@ -22,7 +22,6 @@ interface SocialLink {
 }
 
 interface FooterProps {
-  logoSrc: string;
   logoAlt: string;
   description: string;
   columns: FooterColumn[];
@@ -35,7 +34,6 @@ interface FooterProps {
 }
 
 export const Footer: FC<FooterProps> = ({
-  logoSrc,
   logoAlt,
   description,
   columns,
@@ -51,13 +49,7 @@ export const Footer: FC<FooterProps> = ({
           {/* Logo + Description + Social */}
           <div className="flex flex-col gap-4 md:w-1/3">
             <Link href="/" aria-label={logoAlt}>
-              <Image
-                src={logoSrc}
-                alt={logoAlt}
-                width={866}
-                height={1061}
-                className="h-16 md:h-20 w-auto object-contain brightness-0 invert"
-              />
+              <Logo className="h-16 md:h-20" />
             </Link>
             <p className="text-muted-foreground max-w-xs">{description}</p>
             <div className="flex items-center gap-3 mt-2">
@@ -83,20 +75,25 @@ export const Footer: FC<FooterProps> = ({
                 <h4 className="text-foreground font-heading font-semibold tracking-wide text-sm uppercase">
                   {col.title}
                 </h4>
-                {col.links.map(({ label, href, badge }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    className="text-muted-foreground hover:text-gold-ink transition-colors flex items-center gap-1.5 text-sm"
-                  >
-                    {label}
-                    {badge && (
-                      <span className="bg-gold text-gold-foreground text-[10px] font-medium px-1.5 py-0.5 rounded">
-                        {badge}
-                      </span>
-                    )}
-                  </Link>
-                ))}
+                {col.links.map(({ label, href, badge }) => {
+                  const isExternal = href.startsWith("http");
+                  return (
+                    <Link
+                      key={label}
+                      href={href}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      className="text-muted-foreground hover:text-gold-ink transition-colors flex items-center gap-1.5 text-sm"
+                    >
+                      {label}
+                      {badge && (
+                        <span className="bg-gold text-gold-foreground text-[10px] font-medium px-1.5 py-0.5 rounded">
+                          {badge}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
               </div>
             ))}
           </div>
@@ -109,11 +106,20 @@ export const Footer: FC<FooterProps> = ({
           <p>{copyright}</p>
           {legalLinks.length > 0 && (
             <div className="flex items-center gap-5">
-              {legalLinks.map((link) => (
-                <Link key={link.label} href={link.href} className="hover:text-gold-ink hover:underline transition-colors">
-                  {link.label}
-                </Link>
-              ))}
+              {legalLinks.map((link) => {
+                const isExternal = link.href.startsWith("http");
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    className="hover:text-gold-ink hover:underline transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

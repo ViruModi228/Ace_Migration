@@ -5,11 +5,25 @@ const SCROLL_KEYFRAMES = `
 @keyframes ace-testimonials-scroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 `;
 
+const INITIAL_PALETTE = [
+  "bg-gold/15 text-gold-ink",
+  "bg-secondary text-foreground",
+  "bg-primary/20 text-gold-ink",
+  "bg-muted text-foreground",
+];
+
+function getInitials(name: string) {
+  const words = name
+    .replace(/[^a-zA-Z\s]/g, "")
+    .split(/\s+/)
+    .filter(Boolean);
+  return words.slice(0, 2).map((w) => w[0]).join("").toUpperCase() || "?";
+}
+
 export const TestimonialsColumn = (props: {
   className?: string;
   testimonials: {
     text: string;
-    image: string;
     name: string;
     role: string;
   }[];
@@ -36,21 +50,19 @@ export const TestimonialsColumn = (props: {
         {[
           ...new Array(2).fill(0).map((_, index) => (
             <React.Fragment key={index}>
-              {props.testimonials.map(({ text, image, name, role }, i) => (
+              {props.testimonials.map(({ text, name, role }, i) => (
                 <div
                   className="p-10 rounded-3xl border border-border bg-card shadow-lg shadow-primary/10 max-w-xs w-full"
                   key={i}
                 >
                   <div className="text-sm text-foreground leading-relaxed">{text}</div>
                   <div className="flex items-center gap-2 mt-5">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      width={40}
-                      height={40}
-                      src={image}
-                      alt={name}
-                      className="h-10 w-10 rounded-full object-cover"
-                    />
+                    <div
+                      aria-hidden="true"
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${INITIAL_PALETTE[i % INITIAL_PALETTE.length]}`}
+                    >
+                      {getInitials(name)}
+                    </div>
                     <div className="flex flex-col">
                       <div className="font-medium tracking-tight leading-5 text-foreground">
                         {name}

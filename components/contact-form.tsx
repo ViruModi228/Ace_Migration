@@ -18,7 +18,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -57,7 +56,6 @@ export function ContactForm() {
       phone: "",
       service: "",
       message: "",
-      consent: false,
       company: "",
     },
   });
@@ -220,31 +218,6 @@ export function ContactForm() {
           <p className="text-sm text-destructive">{errors.message.message}</p>
         )}
       </motion.div>
-
-      <motion.div variants={field} className="flex items-start gap-3">
-        <Controller
-          name="consent"
-          control={control}
-          render={({ field: f }) => (
-            <Checkbox
-              id="consent"
-              checked={f.value}
-              onCheckedChange={(checked) => f.onChange(checked === true)}
-            />
-          )}
-        />
-        <Label htmlFor="consent" className="text-sm font-normal text-muted-foreground leading-relaxed">
-          I consent to ACE Migration contacting me about my enquiry and
-          agree to the{" "}
-          <a href="/privacy" className="text-gold-ink underline underline-offset-2">
-            privacy policy
-          </a>
-          .
-        </Label>
-      </motion.div>
-      {errors.consent && (
-        <p className="text-sm text-destructive">{errors.consent.message}</p>
-      )}
 
       <AnimatePresence>
         {serverError && (

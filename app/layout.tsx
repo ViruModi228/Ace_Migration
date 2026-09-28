@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Lato } from "next/font/google";
+import { Lato } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const heading = EB_Garamond({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
+// One professional, uniform sans-serif family for both headings and body —
+// headings get their hierarchy from weight/size, not a separate display font.
 const body = Lato({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
+  weight: ["300", "400", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -58,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${heading.variable} ${body.variable} h-full antialiased`}
+      className={`${body.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}

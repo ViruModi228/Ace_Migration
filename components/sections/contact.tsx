@@ -6,6 +6,14 @@ import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/contact-form";
 import { siteConfig } from "@/lib/site-config";
 
+// Split "...530 Little Collins St, Melbourne VIC 3000" at the last comma so
+// the suburb/state/postcode always starts its own line instead of wrapping
+// mid-phrase.
+const lastComma = siteConfig.address.lastIndexOf(",");
+const addressLine1 =
+  lastComma === -1 ? siteConfig.address : siteConfig.address.slice(0, lastComma + 1);
+const addressLine2 = lastComma === -1 ? "" : siteConfig.address.slice(lastComma + 1).trim();
+
 export function Contact() {
   return (
     <section id="contact" className="relative py-24 bg-muted/40 overflow-hidden">
@@ -54,15 +62,14 @@ export function Contact() {
                 Prefer to talk?
               </h3>
               <p className="mt-2 text-sm text-white/70">
-                Book a free initial consultation with one of our registered
-                migration agents.
+                Book a consultation with one of our experts.
               </p>
               <Button
                 asChild
                 className="mt-5 w-full bg-gold text-gold-foreground hover:bg-gold/90 group"
               >
                 <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                  Book an appointment
+                  Book An Appointment
                   <ArrowRight className="ml-1 size-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
@@ -82,7 +89,11 @@ export function Contact() {
                 </li>
                 <li className="flex items-start gap-3">
                   <MapPin className="size-4 text-gold-ink shrink-0 mt-0.5" />
-                  <span>{siteConfig.address}</span>
+                  <span>
+                    {addressLine1}
+                    <br />
+                    {addressLine2}
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Clock className="size-4 text-gold-ink shrink-0 mt-0.5" />

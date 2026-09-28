@@ -48,7 +48,7 @@ export function Navbar() {
       >
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
           <a href="#" aria-label={`${siteConfig.name} home`} className="shrink-0">
-            <Logo dark={showLightText} className="h-11 md:h-14" />
+            <Logo iconOnly className="h-11 md:h-14" />
           </a>
 
           <ul className="hidden lg:flex items-center gap-8">
@@ -71,8 +71,9 @@ export function Navbar() {
                     {link.label}
                     {isActive && (
                       <motion.span
-                        layoutId="nav-underline"
-                        className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-gold rounded-full"
+                        layoutId="nav-limelight"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        className="absolute -bottom-2 left-1/2 h-[3px] w-7 -translate-x-1/2 rounded-full bg-gold shadow-[0_0_10px_2px_var(--gold)]"
                       />
                     )}
                   </a>
@@ -84,7 +85,7 @@ export function Navbar() {
           <div className="hidden lg:block">
             <Button asChild className="bg-gold text-gold-foreground hover:bg-gold/90">
               <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-                Book an appointment
+                Book An Appointment
               </a>
             </Button>
           </div>
@@ -160,7 +161,7 @@ export function Navbar() {
                     rel="noopener noreferrer"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Book an appointment
+                    Book An Appointment
                   </a>
                 </Button>
               </motion.li>
