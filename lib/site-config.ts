@@ -64,7 +64,7 @@ export const siteConfig = {
   hours: [{ days: "Monday – Friday", time: "9:00am – 5:00pm" }],
   instagramHandle: "@acme.migration",
   instagramUrl: "https://www.instagram.com/acme.migration/?hl=en",
-  maraNumber: "MARN 2117165", // Ravi Shah — registered migration agent
+  maraNumber: "MARN 2117164", // Ravi Shah — registered migration agent
   bookingUrl: "https://app.lodgehq.com.au/book/ace-migration",
   companyLegalName: "ACE MEL Pty Ltd",
   abn: "72 702 050 557",
