@@ -21,6 +21,12 @@ interface SocialLink {
   label: string;
 }
 
+interface FooterOffice {
+  city: string;
+  address: string;
+  phone?: string;
+}
+
 interface FooterProps {
   logoAlt: string;
   description: string;
@@ -31,6 +37,8 @@ interface FooterProps {
       used here for the MARA/OMARA registration note. */
   note?: ReactNode;
   legalLinks?: FooterLink[];
+  /** Rendered as its own "Our Offices" grid, above `note`. */
+  offices?: FooterOffice[];
 }
 
 export const Footer: FC<FooterProps> = ({
@@ -41,6 +49,7 @@ export const Footer: FC<FooterProps> = ({
   copyright = `© ${new Date().getFullYear()}. All Rights Reserved.`,
   note,
   legalLinks = [],
+  offices = [],
 }) => {
   return (
     <footer className="w-full bg-card border-t border-border">
@@ -98,6 +107,32 @@ export const Footer: FC<FooterProps> = ({
             ))}
           </div>
         </div>
+
+        {offices.length > 0 && (
+          <div className="mt-10 pt-8 border-t border-border">
+            <h4 className="text-foreground font-heading font-semibold tracking-wide text-sm uppercase mb-5">
+              Our Offices
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {offices.map((office, i) => (
+                <div key={i}>
+                  <p className="text-sm font-medium text-foreground">{office.city}</p>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    {office.address}
+                  </p>
+                  {office.phone && (
+                    <a
+                      href={`tel:${office.phone.replace(/\s+/g, "")}`}
+                      className="mt-1.5 block text-sm text-gold-ink hover:underline"
+                    >
+                      {office.phone}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {note && <div className="mt-10 text-xs text-muted-foreground max-w-md">{note}</div>}
 

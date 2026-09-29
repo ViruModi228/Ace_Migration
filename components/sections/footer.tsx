@@ -2,7 +2,7 @@
 
 import { Footer as FooterUi } from "@/components/ui/footer-1";
 import { InstagramIcon, FacebookIcon, LinkedinIcon } from "@/components/icons/social";
-import { navLinks, siteConfig } from "@/lib/site-config";
+import { navLinks, offices, siteConfig } from "@/lib/site-config";
 
 export function Footer() {
   return (
@@ -10,6 +10,7 @@ export function Footer() {
       logoAlt={`${siteConfig.name} home`}
       description={siteConfig.description}
       copyright={`© ${new Date().getFullYear()} ${siteConfig.companyLegalName}. All rights reserved.`}
+      offices={offices}
       note={
         <div className="space-y-1.5">
           <p>

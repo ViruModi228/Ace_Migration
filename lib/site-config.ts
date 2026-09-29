@@ -49,6 +49,12 @@ export type ProcessStep = {
   description: string;
 };
 
+export type Office = {
+  city: string;
+  address: string;
+  phone?: string;
+};
+
 export const siteConfig = {
   name: "ACE Migration",
   tagline: "Migration & Visa Solutions",
@@ -75,6 +81,32 @@ export const siteConfig = {
   codeOfConductUrl:
     "https://www.mara.gov.au/tools-for-agents-subsite/Files/code-of-conduct-march-2022.pdf",
 } as const;
+
+// Shown in the footer's "Our Offices" section.
+export const offices: Office[] = [
+  {
+    city: "Melbourne, Australia",
+    address: siteConfig.address,
+  },
+  {
+    city: "Ahmedabad, India",
+    address:
+      "Block-A, 428, Sun West Bank, Ashram Rd, opposite Citygold Cinema, Vishalpur, Muslim Society, Navrangpura, Ahmedabad, Gujarat 380015, India",
+    phone: "+91 63588 54225",
+  },
+  {
+    city: "Ahmedabad, India",
+    address:
+      "B-315, Shayona S1 complex, Shayona City Chanakyapurim, Gota, Ahmedabad, Gujarat 380061, India",
+    phone: "+91 79900 29469",
+  },
+  {
+    city: "Vadodara, India",
+    address:
+      "315, K10 Grand B/h Atlantis K10, Sarabhai Campus Alkapuri Road, Vadodara, Gujarat 390007, India",
+    phone: "+91 387744288",
+  },
+];
 
 // Shown in the About section under the "Who We Are" heading.
 export const aboutParagraphs: string[] = [
