@@ -104,7 +104,7 @@ export const offices: Office[] = [
     city: "Vadodara, India",
     address:
       "315, K10 Grand B/h Atlantis K10, Sarabhai Campus Alkapuri Road, Vadodara, Gujarat 390007, India",
-    phone: "+91 387744288",
+    phone: "+91 9327966640",
   },
 ];
 
