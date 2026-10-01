@@ -97,7 +97,7 @@ export const offices: Office[] = [
   {
     city: "Ahmedabad, India",
     address:
-      "B-315, Shayona S1 complex, Shayona City Chanakyapurim, Gota, Ahmedabad, Gujarat 380061, India",
+      "D-604/605, Shayona Sarvopari, Shayona City Circle, Chankyapuri, Ahmedabad, Gujarat 380061, India",
     phone: "+91 79900 29469",
   },
   {
@@ -233,7 +233,7 @@ export const team: TeamMember[] = [
     slug: "ravi-shah",
     name: "Ravi Shah",
     role: "Migration Agent",
-    credentials: ["MARN 2117165", "INZ 202502071"],
+    credentials: ["MARN 2117164", "INZ 202502071"],
     tagline: [
       "The agent you call when it matters most.",
       "Strategy first. Success follows.",
